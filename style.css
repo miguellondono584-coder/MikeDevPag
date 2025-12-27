@@ -52,19 +52,19 @@ body {
 }
 
 .card {
-  width: 340px;
-  padding: 25px;
+  width: 400px;
+  padding: 30px;
   text-align: center;
   border: 2px solid var(--card-border);
   border-radius: 16px;
   backdrop-filter: blur(8px);
   background: rgba(0,0,0,0.3);
   box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  transform: none;
-  transform-style: preserve-3d;
-  transition: transform 0.8s ease-out;
+  transition: transform 0.1s ease-out;
   transform-origin: center center;
   will-change: transform;
+  animation: cardEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, border-neon 2s ease-in-out infinite alternate;
+  opacity: 0;
 }
 
 @keyframes slideUp {
@@ -78,15 +78,30 @@ body {
   }
 }
 
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .hidden {
   display: none;
 }
 
 .avatar {
-  width: 110px;
-  height: 110px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   border: 3px solid var(--card-border);
   object-fit: cover;
   transition: transform 0.3s ease;
@@ -103,78 +118,72 @@ h1 {
   font-family: 'Tagesschrift', cursive;
   color: #ffffff;
   text-shadow:
-    0 0 5px #00ffff,
-    0 0 10px #00ffff,
-    0 0 15px #00ffff,
-    0 0 20px #00ffff,
-    0 0 25px #00ffff,
-    0 0 30px #00ffff,
-    0 0 35px #00ffff,
-    0 0 40px #00ffff,
-    0 0 45px #00ffff,
-    0 0 50px #00ffff,
-    0 0 55px #00ffff,
-    0 0 60px #00ffff,
-    0 0 65px #00ffff,
-    0 0 70px #00ffff,
-    0 0 75px #00ffff,
-    0 0 80px #00ffff,
-    0 0 85px #00ffff,
-    0 0 90px #00ffff,
-    0 0 95px #00ffff,
-    0 0 100px #00ffff;
-  box-shadow:
-    0 0 10px #00ffff,
-    0 0 20px #00ffff,
-    0 0 30px #00ffff,
-    0 0 40px #00ffff,
-    0 0 50px #00ffff,
-    0 0 60px #00ffff;
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 15px #ffffff,
+    0 0 20px #ffffff;
   animation: neon 0.5s ease-in-out infinite alternate;
+  box-shadow: none;
 }
 
 @keyframes neon {
   from {
     text-shadow:
-      0 0 5px #00ffff,
-      0 0 10px #00ffff,
-      0 0 15px #00ffff,
-      0 0 20px #00ffff,
-      0 0 25px #00ffff,
-      0 0 30px #00ffff,
-      0 0 35px #00ffff,
-      0 0 40px #00ffff,
-      0 0 45px #00ffff,
-      0 0 50px #00ffff,
-      0 0 55px #00ffff,
-      0 0 60px #00ffff,
-      0 0 65px #00ffff,
-      0 0 70px #00ffff;
+      0 0 5px #ffffff,
+      0 0 10px #ffffff,
+      0 0 15px #ffffff,
+      0 0 20px #ffffff;
   }
   to {
     text-shadow:
-      0 0 2px #00ffff,
-      0 0 5px #00ffff,
-      0 0 10px #00ffff,
-      0 0 15px #00ffff,
-      0 0 20px #00ffff,
-      0 0 25px #00ffff,
-      0 0 30px #00ffff,
-      0 0 35px #00ffff,
-      0 0 40px #00ffff,
-      0 0 45px #00ffff,
-      0 0 50px #00ffff,
-      0 0 55px #00ffff,
-      0 0 60px #00ffff,
-      0 0 65px #00ffff;
+      0 0 2px #ffffff,
+      0 0 5px #ffffff,
+      0 0 10px #ffffff,
+      0 0 15px #ffffff;
+  }
+}
+
+@keyframes border-neon {
+  0% {
+    box-shadow:
+      0 0 5px #800080,
+      0 0 10px #800080,
+      0 0 15px #800080,
+      0 0 20px #800080,
+      inset 0 0 5px #800080,
+      inset 0 0 10px #800080,
+      inset 0 0 15px #800080,
+      inset 0 0 20px #800080;
+  }
+  50% {
+    box-shadow:
+      0 0 2px #800080,
+      0 0 5px #800080,
+      0 0 10px #800080,
+      0 0 15px #800080,
+      inset 0 0 2px #800080,
+      inset 0 0 5px #800080,
+      inset 0 0 10px #800080,
+      inset 0 0 15px #800080;
+  }
+  100% {
+    box-shadow:
+      0 0 5px #800080,
+      0 0 10px #800080,
+      0 0 15px #800080,
+      0 0 20px #800080,
+      inset 0 0 5px #800080,
+      inset 0 0 10px #800080,
+      inset 0 0 15px #800080,
+      inset 0 0 20px #800080;
   }
 }
 
 #typewriter {
   min-height: 20px;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.9;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .player {
@@ -182,9 +191,9 @@ h1 {
 }
 
 .ctrl {
-  width: 36px;
-  height: 36px;
-  margin: 0 5px;
+  width: 42px;
+  height: 42px;
+  margin: 0 6px;
   border: none;
   border-radius: 50%;
   background: var(--btn-bg);
@@ -249,7 +258,7 @@ h1 {
 
 .song-progress-bar {
   width: 100%;
-  height: 60px;
+  height: 6px;
   background: rgba(255,255,255,0.2);
   border-radius: 10px;
   margin: 10px 0;
@@ -261,7 +270,7 @@ h1 {
 #songProgress {
   height: 100%;
   width: 0%;
-  background: #00ff00;
+  background: #800080;
   border-radius: 10px;
   transition: width 0.1s ease;
   position: relative;

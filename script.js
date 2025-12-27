@@ -9,7 +9,7 @@ const nextBtn = document.getElementById("next");
 const songName = document.getElementById("songName");
 const songProgress = document.getElementById("songProgress");
 
-let typeText = "Game Developer & 3D Artist | Programmer: Lua, Python, JavaScript, HTML/CSS • Age | 18 • Colombia";
+let typeText = "Game Developer & 3D Artist | Programmer: Lua, Python, JavaScript, HTML/CSS • Age | 18  Colombia";
 let typeIndex = 0;
 
 let introText = "Click to Continue...";
@@ -34,6 +34,12 @@ intro.addEventListener("click", () => {
     console.error('Audio play failed:', error);
   });
   typeWriter();
+
+  setTimeout(() => {
+    card.style.animation = "border-neon 2s ease-in-out infinite alternate";
+    card.style.opacity = "1";
+    card.style.transform = "rotateX(0deg) rotateY(0deg)";
+  }, 1200);
 });
 
 function loadSong(index) {
@@ -228,10 +234,10 @@ function updateCardRotation(mouseX, mouseY) {
   const deltaX = mouseX - centerX;
   const deltaY = mouseY - centerY;
 
-  const rotateX = Math.max(-12, Math.min(12, (deltaY / window.innerHeight) * 24));
-  const rotateY = Math.max(-12, Math.min(12, -(deltaX / window.innerWidth) * 24));
+  const rotateX = Math.max(-24, Math.min(24, (deltaY / (window.innerHeight / 2)) * 24));
+  const rotateY = Math.max(-24, Math.min(24, -(deltaX / (window.innerWidth / 2)) * 24));
 
-  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 }
 
 if (window.DeviceOrientationEvent) {
