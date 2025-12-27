@@ -1,0 +1,423 @@
+:root {
+  --font-family: 'Arial', sans-serif;
+  --bg-color: rgba(0,0,0,0.7);
+  --card-border: rgba(200,0,255,0.6);
+  --text-color: white;
+  --btn-bg: rgba(255,255,255,0.15);
+  --progress-bg: #c800ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  color: var(--text-color);
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+}
+
+.card {
+  width: 340px;
+  padding: 25px;
+  text-align: center;
+  border: 2px solid var(--card-border);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  transform: none;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-out;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 3px solid var(--card-border);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+h1 {
+  margin-bottom: 5px;
+  font-size: 28px;
+  font-weight: 900;
+  font-family: 'Tagesschrift', cursive;
+  color: #ffffff;
+  text-shadow:
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 15px #00ffff,
+    0 0 20px #00ffff,
+    0 0 25px #00ffff,
+    0 0 30px #00ffff,
+    0 0 35px #00ffff,
+    0 0 40px #00ffff,
+    0 0 45px #00ffff,
+    0 0 50px #00ffff,
+    0 0 55px #00ffff,
+    0 0 60px #00ffff,
+    0 0 65px #00ffff,
+    0 0 70px #00ffff,
+    0 0 75px #00ffff,
+    0 0 80px #00ffff,
+    0 0 85px #00ffff,
+    0 0 90px #00ffff,
+    0 0 95px #00ffff,
+    0 0 100px #00ffff;
+  box-shadow:
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 30px #00ffff,
+    0 0 40px #00ffff,
+    0 0 50px #00ffff,
+    0 0 60px #00ffff;
+  animation: neon 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon {
+  from {
+    text-shadow:
+      0 0 5px #00ffff,
+      0 0 10px #00ffff,
+      0 0 15px #00ffff,
+      0 0 20px #00ffff,
+      0 0 25px #00ffff,
+      0 0 30px #00ffff,
+      0 0 35px #00ffff,
+      0 0 40px #00ffff,
+      0 0 45px #00ffff,
+      0 0 50px #00ffff,
+      0 0 55px #00ffff,
+      0 0 60px #00ffff,
+      0 0 65px #00ffff,
+      0 0 70px #00ffff;
+  }
+  to {
+    text-shadow:
+      0 0 2px #00ffff,
+      0 0 5px #00ffff,
+      0 0 10px #00ffff,
+      0 0 15px #00ffff,
+      0 0 20px #00ffff,
+      0 0 25px #00ffff,
+      0 0 30px #00ffff,
+      0 0 35px #00ffff,
+      0 0 40px #00ffff,
+      0 0 45px #00ffff,
+      0 0 50px #00ffff,
+      0 0 55px #00ffff,
+      0 0 60px #00ffff,
+      0 0 65px #00ffff;
+  }
+}
+
+#typewriter {
+  min-height: 20px;
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.player {
+  margin-top: 20px;
+}
+
+.ctrl {
+  width: 36px;
+  height: 36px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 50%;
+  background: var(--btn-bg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.ctrl:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.1);
+}
+
+.ctrl::before {
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.ctrl.prev::before {
+  content: '';
+  border-width: 6px 10px 6px 0;
+  border-color: transparent white transparent transparent;
+  margin-left: -2px;
+  width: 0;
+  height: 0;
+}
+
+.ctrl.play::before {
+  content: "▶";
+  font-size: 14px;
+  color: white;
+  border: none;
+  width: auto;
+  height: auto;
+}
+
+.ctrl.pause::before {
+  content: "⏹";
+  font-size: 14px;
+  color: white;
+  border: none;
+  width: auto;
+  height: auto;
+}
+
+.ctrl.next::before {
+  content: '';
+  border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent white;
+  margin-left: 2px;
+  width: 0;
+  height: 0;
+}
+
+.progress-bar {
+  display: none;
+}
+
+.song-progress-bar {
+  width: 100%;
+  height: 60px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  margin: 10px 0;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+#songProgress {
+  height: 100%;
+  width: 0%;
+  background: #00ff00;
+  border-radius: 10px;
+  transition: width 0.1s ease;
+  position: relative;
+  z-index: 2;
+}
+
+#visualizerCanvas {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#songName {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 5px;
+  display: block;
+}
+
+.socials {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: var(--btn-bg);
+  color: white;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+    max-width: 400px;
+    margin-top: 60px;
+    padding: 20px;
+  }
+
+  .intro {
+    font-size: 60px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .ctrl {
+    width: 32px;
+    height: 32px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 95%;
+    margin-top: 40px;
+    padding: 15px;
+  }
+
+  .intro {
+    font-size: 50px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .ctrl {
+    width: 28px;
+    height: 28px;
+    margin: 0 3px;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  #typewriter {
+    font-size: 12px;
+  }
+
+  #songName {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 320px) {
+  .card {
+    width: 98%;
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  .intro {
+    font-size: 40px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .ctrl {
+    width: 24px;
+    height: 24px;
+    margin: 0 2px;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  #typewriter {
+    font-size: 11px;
+  }
+
+  #songName {
+    font-size: 10px;
+  }
+}

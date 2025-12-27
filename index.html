@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MikeDev | Bio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tagesschrift&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<video class="background" autoplay muted loop>
+  <source src="https://i.imgur.com/K56siWk.mp4" type="video/mp4">
+</video>
+
+<div class="intro" id="intro">
+  <span id="introText"></span>
+</div>
+
+<div class="card hidden" id="card">
+
+  <img src="https://i.imgur.com/V1eY1Ih.png" class="avatar" alt="Avatar">
+
+  <h1 class="tagesschrift-regular">MikeDev</h1>
+  <p id="typewriter"></p>
+
+  <div class="player">
+    <button id="prev" class="ctrl prev" aria-label="Previous song"></button>
+    <button id="play" class="ctrl play" aria-label="Play/Pause"></button>
+    <button id="next" class="ctrl next" aria-label="Next song"></button>
+
+    <div class="song-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <div id="songProgress"></div>
+    </div>
+
+    <span id="songName"></span>
+  </div>
+
+  <div class="socials">
+    <a href="https://instagram.com/migxzl.07" target="_blank" rel="noopener" class="btn">Instagram</a>
+    <a href="https://discord.gg/cheesestudio" target="_blank" rel="noopener" class="btn">Cheese Studio</a>
+    <a href="https://x.com/RdnnMike" target="_blank" rel="noopener" class="btn">X</a>
+  </div>
+
+</div>
+
+<audio id="audio" preload="auto"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
